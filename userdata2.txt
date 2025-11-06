@@ -1,0 +1,53 @@
+#!/bin/bash
+# Update system and install Apache
+yum update -y
+yum install -y httpd
+
+# Start and enable Apache
+systemctl start httpd
+systemctl enable httpd
+
+# Get instance metadata using IMDSv2
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" \
+  -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+
+INSTANCE_ID=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/instance-id)
+
+INSTANCE_TYPE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/instance-type)
+
+# Create simple HTML page
+cat <<EOF > /var/www/html/index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EC2 Instance Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #f4f4f4;
+    }
+    .box {
+      display: inline-block;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    h1 {
+      color: #2e6bf5;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>EC2 Instance Info</h1>
+    <p><b>Instance ID:</b> ${INSTANCE_ID}</p>
+    <p><b>Instance Type:</b> ${INSTANCE_TYPE}</p>
+  </div>
+</body>
+</html>
+EOF
