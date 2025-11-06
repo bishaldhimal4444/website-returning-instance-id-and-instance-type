@@ -19,7 +19,7 @@ You can use it to get information about the instance itself, such as:
 
 This data is only accessible from inside the EC2 instance.
 
-IMDSv2 vs IMDSv1
+### IMDSv2 vs IMDSv1
 
 Originally, there was IMDSv1, where you could directly do:
 ```
@@ -33,7 +33,7 @@ But IMDSv1 had a security risk — if your app had a bug (like SSRF), someone co
 
 So AWS introduced IMDSv2, which adds a security token step.
 
-How IMDSv2 works (step-by-step)
+## How IMDSv2 works (step-by-step)
 
 Let’s walk through it simply:
 
