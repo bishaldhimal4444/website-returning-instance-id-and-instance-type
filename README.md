@@ -1,7 +1,6 @@
 # How to Retrieve EC2 Instance Metadata Securely Using IMDSv2
 
 
-# How It is Happening? 
 What is IMDS?
 
 IMDS stands for Instance Metadata Service.
