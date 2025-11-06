@@ -11,10 +11,10 @@ http://169.254.169.254
 ```
 You can use it to get information about the instance itself, such as:
 
--Instance ID
--Instance type
--Availability zone
--Security groups
--IAM role credentials (if attached)
+- Instance ID
+- Instance type
+- Availability zone
+- Security groups
+- IAM role credentials (if attached)
 
 This data is only accessible from inside the EC2 instance.
