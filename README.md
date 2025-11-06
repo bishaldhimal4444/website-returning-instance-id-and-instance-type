@@ -1,5 +1,5 @@
-# website-returning-instance-id-and-instance-type
-website returning instance id and instance type
+# How to Retrieve EC2 Instance Metadata Securely Using IMDSv2
+
 
 # How It is Happening? 
 What is IMDS?
